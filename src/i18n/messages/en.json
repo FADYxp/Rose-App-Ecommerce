@@ -1,0 +1,424 @@
+{
+  "home": "Home",
+  "deliver": "Deliver to",
+  "testimonials": {
+    "title": "Testimonials",
+    "sub-title": "Real Words from Happy Customers"
+  },
+  "forgot-password": {
+    "step-one-title": "Forgot Password?",
+    "step-one-subtitle": "Worry not, we’ll send you instructions to help you reset it.",
+    "step-two-title": "Enter the OTP Code",
+    "step-two-subtitle": "We have sent a 6-digit code to {email} <button >Edit</button>",
+    "step-three-title": "Create a new password",
+    "step-three-subtitle": "Set a strong password to secure your account."
+  },
+  "register": {
+    "heading": "Become part of our family!",
+    "login": "Login",
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "gender": {
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "createAccount": "Create Account"
+    },
+    "alreadyHaveAccount": "Already have an account? "
+  },
+  "validation": {
+    "firstName": {
+      "required": "Please enter your first name",
+      "pattern": "Name must contain only letters",
+      "min": "Name must be at least 3 characters long",
+      "max": "Name must be at most 15 characters long"
+    },
+    "lastName": {
+      "required": "Please enter your last name",
+      "pattern": "Name must contain only letters",
+      "min": "Name must be at least 3 characters long",
+      "max": "Name must be at most 15 characters long"
+    },
+    "email": {
+      "invalid": "Please enter a valid email address"
+    },
+    "phone": {
+      "pattern": "Please enter a valid phone number starting with +20",
+      "length": "Phone number must be 13 characters including +20"
+    },
+    "gender": {
+      "required": "Please select your gender"
+    },
+    "password": {
+      "required": "Please enter your password",
+      "min": "Password must be at least 8 characters long",
+      "number": "Password must contain at least 1 number",
+      "lowercase": "Password must contain at least 1 lowercase letter",
+      "uppercase": "Password must contain at least 1 uppercase letter",
+      "special": "Password must contain at least 1 special character (#?!@$%^&*-)"
+    },
+    "rePassword": {
+      "required": "Please re-enter your password",
+      "mismatch": "Passwords does not match"
+    }
+  },
+  "email-lablel": "Email",
+  "alreadyHaveAccount": "Already have an account? ",
+  "email-label": "Email",
+  "forgot-password-heading": "Forgot Password?",
+  "forget-password-text": "Worry not, we'll send you instructions to help you reset it.",
+  "email-placeholder": "Enter your email",
+  "continue": "Continue",
+  "non-email-error": "Please Enter Your Email",
+  "email-not-valid": "Enter a valid email",
+  "required-email": "Email is required",
+  "dont-have-an-account": "Don't have an account yet? <a>Create one now!</a>",
+  "create-new-password-label": "Create a new password",
+  "create-new-password-text": "Set a strong password to secure your account.",
+  "password-label": "Password",
+  "confirm-password-label": "Confirm Password",
+  "reset-password-btn": "Reset Password",
+  "need-help": "Need help? <a>Contact us</a>",
+  "password-is-required": "Password is required",
+  "password-at-least-8-characters": "Password must be at least 8 characters",
+  "password-contain-uppercase-letter": "Password must contain at least one uppercase letter",
+  "password-contain-lowercase-letter": "Password must contain at least one lowercase letter",
+  "password-contain-one-number": "Password must contain at least one number",
+  "passwords-do-not-match": "Passwords do not match",
+  "products": "products",
+  "product": {
+    "currency": "EGP",
+    "badge": {
+      "new": "NEW",
+      "hot": "HOT",
+      "out-of-stock": "OUT OF STOCK"
+    },
+    "error-loading-product-details": "Error loading product details"
+  },
+  "best-selling": {
+    "title": "Best Selling",
+    "subtitle": {
+      "checkOut": "Check Out",
+      "restBeforeBuying": "What Everyone's ",
+      "buying": "Buying",
+      "rest-after-buying": "Right Now"
+    },
+    "description": "Not sure what to choose? Start with our best sellers, these are the gifts our customers keep coming back for. Whether you're celebrating a birthday, anniversary or wedding, our top picks are guaranteed to leave a lasting impression.",
+    "button": "Explore gifts"
+  },
+  "most-popular": {
+    "title": "Most Popular",
+    "empty": "No products found for this occasion",
+    "view-more": "View More"
+  },
+  "about": {
+    "title": "About",
+    "heading": {
+      "beforeFinest": "Delivering the",
+      "finest": "Finest",
+      "beforeSpecial": "Gift Boxes for Your",
+      "special": "Special",
+      "afterSpecial": "Moments"
+    },
+    "description": "Make every moment memorable with our premium gift boxes. Carefully curated and beautifully packaged, each box is filled with handpicked items designed to impress. Whether it's for a birthday, wedding, or a simple “thank you,” our gift boxes are crafted to leave a lasting impression — because thoughtful gifting starts here.",
+    "button": "Discover",
+    "features": {
+      "f1": "Competitive Prices & Easy Shopping",
+      "f2": "Premium Quality & Elegant Packaging",
+      "f3": "Perfect for Every Occasion",
+      "f4": "Fast & Reliable Delivery"
+    }
+  },
+  "companies": {
+    "title": "Trusted by over",
+    "count": "4.5k+",
+    "suffix": "companies"
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "Check Out our Wonderful Gallery"
+  },
+  "login": {
+    "heading": "Welcome back!",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "user@example.com",
+    "passwordPlaceholder": "********",
+    "forgotPassword": "Forgot your password?",
+    "rememberMe": "Remember me",
+    "loginBtn": "Login",
+    "genericError": "Something went wrong",
+    "passwordPatternError": "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.",
+    "noAccount": "Don't have an account yet?",
+    "createAccount": "Create one now!",
+    "schema": {
+      "email-required": "Email is required",
+      "invalid-email": "Please enter a valid email address",
+      "password-required": "Password is required"
+    }
+  },
+  "add-to-wishlist": "add to wishlist",
+  "remove-from-wishlist": "add from wishlist",
+  "login-popup": {
+    "loginTab": "Login",
+    "registerTab": "Register"
+  },
+  "delete-alert": {
+    "button-text": "delete",
+    "delet-alert-description": "Are you sure you want to delete this?",
+    "delet-alert-cancel": " Cancel",
+    "delet-alert-Confirm": "Confirm",
+    "delet-alert-loading": "Deleting..."
+  },
+  "items": {
+    "product": "product",
+    "category": "category",
+    "item": "item"
+  },
+  "admin": {
+    "change-password": "Change Password"
+  },
+  "in-stock": "left in stock",
+  "out-of-stock": "Out of stock",
+  "cart": {
+    "title": "Cart",
+    "empty": "clear cart",
+    "empty-cart": "Your cart is empty, wanna try shopping?",
+    "products": "products",
+    "continue-shopping": "Continue Shopping",
+    "products-you-may-like": "Products You May Like",
+    "remove-product": "remove",
+    "rating": "Rating",
+    "ratings": "ratings",
+    "currency": "EGP",
+    "loading": "Loading ..."
+  },
+  "category-filter": {
+    "title": "Category",
+    "reset": "Reset",
+    "loading-more": "Loading more...",
+    "loading-categories": "Loading categories..."
+  },
+  "rating-filter": {
+    "title": "Rating",
+    "reset": "Reset"
+  },
+  "reset-all": "Reset All",
+  "addressModal": {
+    "add-title": "Add Address",
+    "edit-title": "Edit Address",
+    "next": "Next",
+    "select-location": "Find Your Location",
+    "saving": "Saving...",
+    "add-btn": "Add Address",
+    "save-btn": "Save Changes",
+    "error": "Failed to save address"
+  },
+
+  "addressList": {
+    "title": "My Addresses",
+    "add-new": "Add a New Address",
+    "loading": "Loading addresses...",
+    "empty": "No saved addresses",
+    "add": "Add Address"
+  },
+  "deliveryDialog": {
+    "title": "My Addresses",
+    "add-new": "Add a New Address",
+    "loading": "Loading addresses...",
+    "empty": "No saved addresses yet",
+    "add": "Add Address",
+    "labels": {
+      "home": "Home",
+      "work": "Work",
+      "family": "Family"
+    }
+  },
+  "AddressForm": {
+    "title": "Enter address details",
+    "cityLabel": "City",
+    "cityPlaceholder": "Enter city name",
+    "streetLabel": "Address",
+    "streetPlaceholder": "Enter your full address",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Enter phone number"
+  },
+  "DeleteAddress": {
+    "title": "Are you sure you want to delete this address?",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "MapPicker": {
+    "findLocation": "Find My Location",
+    "notSupported": "Geolocation is not supported by your browser.",
+    "locationError": "Could not get your location. Please try again."
+  },
+  "shipping-address": {
+    "title": "Shipping Address",
+    "add-new": "Add New Address",
+    "or": "OR",
+    "next": "Next"
+  },
+  "payment-method": {
+    "title": "Payment Method",
+    "back": "Back",
+    "cash": "Cash on Delivery",
+    "cash-description": "You’ll pay in cash when your order is delivered.",
+    "card": "Credit Card",
+    "card-description": "You’ll be securely redirected to Stripe to complete your payment.",
+    "checkout": "Checkout"
+  },
+  "summary": {
+    "title": "Summary",
+    "placeholder": "Coupon Code",
+    "apply": "Apply Coupon",
+    "box": "No coupons applied",
+    "subtotal": "Subtotal",
+    "total": "Total"
+  },
+  "error": "error",
+  "product.products": "",
+  "old-password-label": "Old Password",
+  "new-password-label": "New Password",
+  "confirm-new-password-label": "Confirm New Password",
+  "change-password": "Change Password",
+  "delete-my-account": "Delete My Account",
+  "ask-for-delete-account": "Are you sure you want to delete your account?",
+  "action-cannot-undone": "This action is permanent and cannot be undone.",
+  "not-doing": "Nope, not doing it",
+  "yes-delete": "Yes, delete",
+  "my-account": "My Account",
+  "update-profile": "Update Profile",
+  "logout": "Logout",
+  "gender": "Gender",
+  "male": "Male",
+  "upload-photo": "Upload Photo",
+  "photo-extentions": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+  "save-changes": "Save Changes",
+  "your-account-deleted": "Your Account Deleted",
+  "your-profile-updated": "Your profile has been updated successfully",
+  "low-stock": {
+    "title": "Low Stock Products",
+    "unit": "Products"
+  },
+  "top-selling": {
+    "title": "Top Selling Products",
+    "unit": "Sales"
+  },
+  "orders": {
+    "title": "Orders",
+    "paid": "Paid",
+    "order-number": "Order",
+    "created-at": "Created at",
+    "total-price": "Total Price",
+    "status": "Status",
+    "order-items": "Order Items",
+    "show-all": "Show All",
+    "show-less": "Show Less",
+    "no-orders": "No orders found.",
+    "currency": "EGP",
+    "rating": "Rating",
+    "ratings-count": "ratings",
+    "payment": {
+      "method": "Payment Method",
+      "cash": "Cash",
+      "credit-card": "Credit Card"
+    },
+    "delivery": {
+      "status": "Delivery Status",
+      "pending": "Pending",
+      "cancelled": "Cancelled",
+      "delivered": "Delivered"
+    },
+    "order-status": {
+      "pending": "Pending",
+      "done": "Done",
+      "cancelled": "Cancelled"
+    },
+    "error-loading-orders": "Error loading orders"
+  },
+  "notFound": {
+    "title": "This page does not exist.",
+    "description": "We couldn’t find the page your are looking for, please make sure you are in the right path."
+  },
+  "error-handler": {
+    "title": "Oops, something went wrong!",
+    "description": "Something unexpected happened, please refresh the page or try again shortly."
+  },
+  "not-authorized": {
+    "title": "You are not authorized to access this page.",
+    "description": "If you think this is wrong, please contact the support.",
+    "return-home": "Got to home"
+  },
+  "dashboard": {
+    "sidebar": {
+      "preview-website": "Preview website",
+      "account": "Account",
+      "logout": "Logout",
+      "overview": "Overview",
+      "categories": "Categories",
+      "occasions": "Occasions",
+      "products": "Products"
+    },
+    "products": {
+      "title": "All Products",
+      "add-product": "Add a new product",
+      "search-placeholder": "Search...",
+      "table": {
+        "name": "Name",
+        "price": "Price",
+        "stock": "Stock",
+        "sales": "Sales",
+        "ratings": "Ratings"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "states": {
+        "loading-error": "Failed to load products.",
+        "empty": "No products found."
+      },
+      "delete-modal": {
+        "title": "Are you sure you want to delete this product?",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      }
+    }
+  },
+  "reviews": {
+    "title": "Product Reviews",
+    "generalRating": "General rating",
+    "ratings": "{count} ratings",
+    "noReviews": "No reviews yet for this product.",
+    "form": {
+      "yourRating": "Your rating:",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Enter review title",
+      "reviewLabel": "Review",
+      "reviewPlaceholder": "What do you think of this product?",
+      "submit": "Add Review",
+      "submitting": "Submitting...",
+      "success": "Review submitted successfully!",
+      "loginRequired": "Please login to review this product",
+      "validation": {
+        "titleRequired": "Title is required",
+        "titleMin": "Title must be at least 3 characters",
+        "titleMax": "Title must be at most 100 characters",
+        "commentRequired": "Review is required",
+        "commentMin": "Review must be at least 10 characters",
+        "commentMax": "Review must be at most 500 characters",
+        "ratingRequired": "Please select a rating"
+      }
+    }
+  },
+  "relatedProducts": {
+    "title": "Related Products"
+  }
+}
