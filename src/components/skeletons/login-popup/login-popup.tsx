@@ -3,15 +3,11 @@ import LoginForm from "@/app/[locale]/(auth)/login/_components/login-form";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
 export default function LoginPopup() {
   // translation
   const t = useTranslations("login-popup");
-
-  // router
-  const router = useRouter();
 
   return (
     <Card className="w-[28.125rem] ">
@@ -22,15 +18,12 @@ export default function LoginPopup() {
               {t("loginTab")}
             </TabsTrigger>
 
-            {/* resirect to register path */}
-            <Button
-              variant={"inactive"}
-              onClick={() => {
-                router.push("/register");
-              }}
+            <Link
+              href="/register"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-all hover:text-foreground"
             >
-              Register
-            </Button>
+              {t("registerTab")}
+            </Link>
           </TabsList>
         </CardHeader>
         <CardContent className="pt-6">

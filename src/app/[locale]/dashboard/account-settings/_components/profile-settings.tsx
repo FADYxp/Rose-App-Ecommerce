@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode } from "react";
-import AccountForm from "@/app/[locale]/profile/_components/account-form";
+import AccountForm from "@/app/[locale]/(website)/profile/_components/account-form";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";

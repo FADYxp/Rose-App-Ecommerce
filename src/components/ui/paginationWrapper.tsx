@@ -42,9 +42,7 @@ export default function PaginationWrapper({
 
   // Variables
   const isFirstPage = currentPage === 1;
-  const isSecondPage = currentPage === 2;
   const isLastPage = currentPage === totalPages;
-  const isSecondLastPage = currentPage === totalPages - 1;
   const visiblePages = generatePageNumbers();
 
   // Functions

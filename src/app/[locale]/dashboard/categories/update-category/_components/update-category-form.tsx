@@ -19,7 +19,6 @@ import {
 } from "@/lib/schemas/category.schema";
 import { useUpdateCategory } from "../../../_hooks/use-update-category";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
 
 type Props = {
   id: string;
@@ -29,8 +28,6 @@ type Props = {
 export default function UpdateCategoryForm({ id, defaultName }: Props) {
   // Translation
   const t = useTranslations("dashboard.categories");
-  // Navigation
-  const router = useRouter();
   // Mutation
   const { mutate, isPending, isError, error } = useUpdateCategory();
   // Form & validation

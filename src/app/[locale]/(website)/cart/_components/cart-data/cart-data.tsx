@@ -21,13 +21,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { deleteCart } from "@/lib/actions/delete-cart.actions";
 import { updateCartQuantity } from "@/lib/actions/update-quantity.action";
 import { deleteProduct } from "@/lib/actions/remove-product.actions";
-import PersonalCartCarousel from "../personal-cart-carousel/personal-cart-carousel";
 import EmptyCartCard from "../empty-cart-card/empty-cart-card";
 import type { AddToCartItem, CartItem } from "@/lib/types/cart";
+import Summary from "@/components/shared/summary";
+import StepsFlow from "@/app/[locale]/checkout/_components/steps-flow";
 
 export default function CartData() {
   // State
   const [guestCart, setGuestCart] = useState<AddToCartItem[]>([]);
+  const [isCheckout, setIsCheckout] = useState(false);
   const { status } = useSession();
 
   // translations
@@ -114,7 +116,7 @@ export default function CartData() {
   }
 
   // user login
-  if (status === "loading" || isLoading) return <p> t('loading') </p>;
+  if (status === "loading" || isLoading) return <p>{t("loading")}</p>;
   if (error) return <p>Error loading cart</p>;
 
   // variables
@@ -123,153 +125,168 @@ export default function CartData() {
 
   return (
     <>
-      <div className="px-20">
-        {data?.numOfCartItems === 0 ? (
-          <EmptyCartCard productCount={data?.numOfCartItems ?? 0} />
+      <div className="flex w-full items-start justify-center gap-8 px-20">
+        {isCheckout ? (
+          <StepsFlow />
         ) : (
-          // in case cart is not empty
-          <div className="w-[48rem]">
-            {/* cart header */}
-            <div className="cart-header flex justify-between items-center mb-4 w-full">
-              <div className="text-5xl text-zinc-800 font-bold">
-                {t("title")}
-                <span className="text-zinc-500 font-normal text-base ms-2">
-                  {data?.numOfCartItems} {t("products")}
-                </span>
-              </div>
-              <Button
-                variant="light"
-                className="capitalize"
-                onClick={handleClearCart}
-              >
-                <BrushCleaning size={20} /> {t("empty")}
-              </Button>
-            </div>
-
-            {/* cart body */}
-            <Card className="mb-6 w-full">
-              <CardContent
-                className="max-h-[32rem] overflow-y-auto hide-scrollbar"
-                onScroll={handleScroll}
-              >
-                {visibleItems.map((item: CartItem) => (
-                  <div
-                    key={item._id}
-                    className="flex justify-between items-center border-b py-4"
+          <div className="w-full">
+            {data?.numOfCartItems === 0 ? (
+              <EmptyCartCard productCount={data?.numOfCartItems ?? 0} />
+            ) : (
+              // in case cart is not empty
+              <div className="w-full">
+                {/* cart header */}
+                <div className="cart-header flex justify-between items-center mb-4 w-full">
+                  <div className="text-5xl text-zinc-800 font-bold">
+                    {t("title")}
+                    <span className="text-zinc-500 font-normal text-base ms-2">
+                      {data?.numOfCartItems} {t("products")}
+                    </span>
+                  </div>
+                  <Button
+                    variant="light"
+                    className="capitalize"
+                    onClick={handleClearCart}
                   >
-                    {/* card content */}
-                    <div className="flex items-center gap-4">
-                      {/* card image */}
-                      <Image
-                        src={item.product.imgCover}
-                        alt={item.product.title}
-                        width={100}
-                        height={100}
-                        className="rounded h-32 object-cover"
-                      />
+                    <BrushCleaning size={20} /> {t("empty")}
+                  </Button>
+                </div>
 
-                      <div className="flex flex-col justify-between items-start h-32 ">
-                        {/* card title and rating */}
-                        <div>
-                          <p className="font-semibold text-lg text-start text-maroon-600 capitalize pb-2">
-                            {item.product.title}
-                          </p>
-                          <div className="font-normal text-start text-base flex items-center gap-1">
-                            <Star
-                              className="text-amber-500  fill-amber-500"
-                              size={20}
-                            />
-                            {t("rating")}:
-                            <span className="font-medium">
-                              {item.product.rateAvg}
-                            </span>
-                            <span className="text-blue-600 font-medium text-base ms-2">
-                              ({item.product.rateCount} {t("ratings")})
-                            </span>
+                {/* cart body */}
+                <Card className="mb-6 w-full">
+                  <CardContent
+                    className="max-h-[32rem] overflow-y-auto hide-scrollbar"
+                    onScroll={handleScroll}
+                  >
+                    {visibleItems.map((item: CartItem) => (
+                      <div
+                        key={item._id}
+                        className="flex justify-between items-center border-b py-4"
+                      >
+                        {/* card content */}
+                        <div className="flex items-center gap-4">
+                          {/* card image */}
+                          <Image
+                            src={item.product.imgCover}
+                            alt={item.product.title}
+                            width={100}
+                            height={100}
+                            className="rounded h-32 object-cover"
+                          />
+
+                          <div className="flex flex-col justify-between items-start h-32 ">
+                            {/* card title and rating */}
+                            <div>
+                              <p className="font-semibold text-lg text-start text-maroon-600 capitalize pb-2">
+                                {item.product.title}
+                              </p>
+                              <div className="font-normal text-start text-base flex items-center gap-1">
+                                <Star
+                                  className="text-amber-500  fill-amber-500"
+                                  size={20}
+                                />
+                                {t("rating")}:
+                                <span className="font-medium">
+                                  {item.product.rateAvg}
+                                </span>
+                                <span className="text-blue-600 font-medium text-base ms-2">
+                                  ({item.product.rateCount} {t("ratings")})
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* product price */}
+                            <p>
+                              <span className="text-maroon-600 text-sm font-medium me-1">
+                                (x{item?.quantity})
+                              </span>
+                              <span className="font-bold text-2xl">
+                                {item.price * item.quantity} {t("currency")}
+                              </span>
+                            </p>
                           </div>
                         </div>
 
-                        {/* product price */}
-                        <p>
-                          <span className="text-maroon-600 text-sm font-medium me-1">
-                            (x{item?.quantity})
-                          </span>
-                          <span className="font-bold text-2xl">
-                            {item.price * item.quantity} {t("currency")}
-                          </span>
-                        </p>
+                        <div className="flex flex-col justify-between items-end h-32">
+                          {/* remove product */}
+                          <Button
+                            variant="destructive"
+                            className="capitalize "
+                            onClick={() =>
+                              handleDeleteProduct(item.product._id)
+                            }
+                          >
+                            <Trash2 /> {t("remove-product")}
+                          </Button>
+
+                          {/* quantity */}
+                          <div className="flex items-center gap-2 ">
+                            {/* minus */}
+                            <Button
+                              variant="secondary"
+                              disabled={item.quantity <= 1}
+                              onClick={() =>
+                                handleQuantityChange(
+                                  item.product._id,
+                                  item.quantity - 1
+                                )
+                              }
+                            >
+                              <Minus size={20} />
+                            </Button>
+
+                            {/* input value */}
+                            <Input
+                              type="number"
+                              value={item.quantity}
+                              className="w-24 text-center p-4 border border-zinc-300 rounded-[1rem]"
+                              readOnly
+                            />
+
+                            {/* plus */}
+                            <Button
+                              variant="secondary"
+                              onClick={() =>
+                                handleQuantityChange(
+                                  item.product._id,
+                                  item.quantity + 1
+                                )
+                              }
+                            >
+                              <Plus size={20} />
+                            </Button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="flex flex-col justify-between items-end h-32">
-                      {/* remove product */}
-                      <Button
-                        variant="destructive"
-                        className="capitalize "
-                        onClick={() => handleDeleteProduct(item.product._id)}
-                      >
-                        <Trash2 /> {t("remove-product")}
-                      </Button>
-
-                      {/* quantity */}
-                      <div className="flex items-center gap-2 ">
-                        {/* minus */}
-                        <Button
-                          variant="secondary"
-                          disabled={item.quantity <= 1}
-                          onClick={() =>
-                            handleQuantityChange(
-                              item.product._id,
-                              item.quantity - 1
-                            )
-                          }
-                        >
-                          <Minus size={20} />
-                        </Button>
-
-                        {/* input value */}
-                        <Input
-                          type="number"
-                          value={item.quantity}
-                          className="w-24 text-center p-4 border border-zinc-300 rounded-[1rem]"
-                          readOnly
-                        />
-
-                        {/* plus */}
-                        <Button
-                          variant="secondary"
-                          onClick={() =>
-                            handleQuantityChange(
-                              item.product._id,
-                              item.quantity + 1
-                            )
-                          }
-                        >
-                          <Plus size={20} />
-                        </Button>
-                      </div>
-                    </div>
+                    ))}
+                    {/* loading on scroll */}
+                    {visibleCount < cartItems.length && (
+                      <p className="text-center py-4 text-zinc-500">
+                        {t("loading")}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+                <div className="text-start py-6 w-full">
+                  <div className="flex gap-3">
+                    <Button variant="destructive" className="capitalize">
+                      <MoveLeft size={20} />
+                      <Link href="/">{t("continue-shopping")}</Link>
+                    </Button>
+                    <Button
+                      type="button"
+                      className="capitalize"
+                      onClick={() => setIsCheckout(true)}
+                    >
+                      {t("checkout")}
+                    </Button>
                   </div>
-                ))}
-                {/* loading on scroll */}
-                {visibleCount < cartItems.length && (
-                  <p className="text-center py-4 text-zinc-500">
-                    {t("loading")}
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-            <div className="text-start py-6 w-full">
-              <Button variant={"destructive"} className="capitalize">
-                <MoveLeft size={20} />
-                <Link href="/">{t("continue-shopping")}</Link>
-              </Button>
-            </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
-
-        {/* Products you may like  */}
-        <PersonalCartCarousel />
+        <Summary cart={data?.cart} />
       </div>
     </>
   );

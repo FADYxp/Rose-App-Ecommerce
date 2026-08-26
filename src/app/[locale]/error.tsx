@@ -2,7 +2,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-export default function error() {
+export default function ErrorPage() {
   // Translations
   const t = useTranslations("error-handler");
 

@@ -29,7 +29,6 @@ export default function AddToWishlist({ productId }: Props) {
   const {
     mutation: toggleWishlist,
     data,
-    isLoading,
   } = useToggleWishlist(productId);
 
   // in case guest

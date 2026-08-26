@@ -15,7 +15,7 @@ export default function ForgotPasswordFlowLayout() {
   const [step, setStep] = useState<ForgotPasswordSteps>(
     FORGOT_PASSWORD_STEPS.OTP
   );
-  const [email, setEmail] = useState<string | null>("example@gmail.com");
+  const [email] = useState<string | null>("example@gmail.com");
 
   // variables
   const steps = {

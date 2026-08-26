@@ -17,7 +17,7 @@ export default function SearchModule() {
 
   // States
   const [isOpen, setIsOpen] = useState(false);
-  const [products, setProducts] = useState<Product[] | Recommendation[]>([]);
+  const [products, setProducts] = useState<(Product | Recommendation)[]>([]);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
   const [hasMore, setHasMore] = useState(true);

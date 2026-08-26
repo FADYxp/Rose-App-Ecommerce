@@ -3,7 +3,7 @@
 import { useCategories } from "@/hooks/use-categories";
 import CategoriesHeader from "./categories-header";
 import CategoriesTable from "./categories-table";
-import PaginationWrapper from "@/components/ui/PaginationWrapper";
+import PaginationWrapper from "@/components/ui/paginationWrapper";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 

@@ -1,7 +1,7 @@
 import { CategoriesResponse } from "../types/category";
 
 export async function getCategories(
-  params: Record<string, any> = {}
+  params: { page?: number; search?: string; limit?: number } = {}
 ): Promise<CategoriesResponse> {
   const query = new URLSearchParams();
 

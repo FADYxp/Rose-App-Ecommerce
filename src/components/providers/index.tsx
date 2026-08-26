@@ -5,7 +5,7 @@ import ReactQueryProvider from "./components/react-query-provider";
 import { ToastContextProvider } from "@/context/toast-context";
 import SessionProviderWrapper from "./components/session-provider";
 
-export default function Providers({ children, messages }: { children: React.ReactNode, messages: any }) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ReactQueryProvider>
       <NextIntlClientProvider>

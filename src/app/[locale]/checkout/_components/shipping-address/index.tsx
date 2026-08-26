@@ -2,9 +2,11 @@ import React from "react";
 import AddressCard from "./address-card";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
-import { useAddresses } from "@/hooks/use-address";
+import { useAddresses } from "../../hooks/use-addresses";
 import Loading from "@/app/loading";
 import { useTranslations } from "next-intl";
+import { DeliveryLocationDialog } from "../address-dialog";
+import type { Address as UserAddress } from "@/lib/types/address";
 
 export default function ShippingAddress({
   setStep,
@@ -18,6 +20,7 @@ export default function ShippingAddress({
 }: ShippingAddressProps) {
   //translations
   const t = useTranslations("shipping-address");
+  const [isAddressDialogOpen, setIsAddressDialogOpen] = React.useState(false);
 
   // handle select address
   const handleSelectAddress = (address: Address) => {
@@ -30,21 +33,31 @@ export default function ShippingAddress({
   };
 
   //states and queries
-  const { data, isLoading, isError } = useAddresses();
+  const { addresses, loading, error } = useAddresses();
 
-  if (isLoading)
+  if (loading)
     return (
       <div className="flex justify-center items-center h-80">
         <Loading />;
       </div>
     );
 
-  if (isError)
+  if (error)
     return (
       <p className="flex justify-center items-center text-maroon-600 text-lg py-5">
         Failed to load addresses. Please try again later.
       </p>
     );
+
+  const handleAddressSelected = (address: UserAddress) => {
+    setId(address._id || address.id || "");
+    setStreet(address.street);
+    setPhone(address.phone);
+    setCity(address.city);
+    setLat(address.lat || "");
+    setLong(address.long || "");
+    setIsAddressDialogOpen(false);
+  };
 
   return (
     <div className="space-y-3">
@@ -52,7 +65,7 @@ export default function ShippingAddress({
       <h3 className="font-semibold text-3xl">{t("title")}</h3>
       {/* addresses list show */}
       <ul className="flex flex-col gap-3 h-80 overflow-y-auto hide-scrollbar ">
-        {data?.addresses.map((address) => (
+        {addresses.map((address) => (
           <li key={address._id}>
             <button
               className="w-full"
@@ -88,7 +101,11 @@ export default function ShippingAddress({
           </span>
           <span className="flex-1 h-0 border border-zinc-100"></span>
         </div>
-        <Button className="bg-maroon-50 text-maroon-600 w-full text-base font-medium hover:text-white hover:bg-maroon-600 mt-2">
+        <Button
+          type="button"
+          onClick={() => setIsAddressDialogOpen(true)}
+          className="bg-maroon-50 text-maroon-600 w-full text-base font-medium hover:text-white hover:bg-maroon-600 mt-2"
+        >
           {t("add-new")}
         </Button>
       </div>
@@ -102,6 +119,11 @@ export default function ShippingAddress({
           <MoveRight size={20} className="rtl:rotate-180" />
         </Button>
       </div>
+      <DeliveryLocationDialog
+        open={isAddressDialogOpen}
+        onOpenChange={setIsAddressDialogOpen}
+        onSelectAddress={handleAddressSelected}
+      />
     </div>
   );
 }

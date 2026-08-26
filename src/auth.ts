@@ -41,10 +41,17 @@ export const authOptions: NextAuthOptions = {
           },
         });
 
-        const payload: ApiResponse = await response.json();
+        let payload: ApiResponse;
+        try {
+          payload = await response.json();
+        } catch {
+          throw new Error("Unable to contact the login service");
+        }
 
-        if ("error" in payload) {
-          throw new Error(payload.error);
+        if (!response.ok || "error" in payload) {
+          throw new Error(
+            "error" in payload ? payload.error : "Invalid credentials"
+          );
         }
 
         return {

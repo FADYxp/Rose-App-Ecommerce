@@ -29,8 +29,11 @@ export async function createCategoryAction(formData: FormData) {
       message: "Category added successfully",
       document: data.document || data,
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
-    return { success: false, message: err?.message || "Something went wrong" };
+    return {
+      success: false,
+      message: err instanceof Error ? err.message : "Something went wrong",
+    };
   }
 }

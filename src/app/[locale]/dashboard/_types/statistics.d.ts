@@ -16,14 +16,14 @@ declare interface OverallStats {
 declare interface FullStatisticsData {
   overall: OverallStats;
   products: {
-    productsByCategory: any[];
-    topSellingProducts: any[];
-    lowStockProducts: any[];
+    productsByCategory: unknown[];
+    topSellingProducts: unknown[];
+    lowStockProducts: unknown[];
   };
   orders: {
-    ordersByStatus: any[];
-    dailyRevenue: any[];
-    monthlyRevenue: any[];
+    ordersByStatus: unknown[];
+    dailyRevenue: unknown[];
+    monthlyRevenue: unknown[];
   };
     categories: Category[];
 }

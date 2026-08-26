@@ -2,7 +2,7 @@ import { Link } from "@/i18n/navigation";
 import LoginForm from "./_components/login-form";
 import { useTranslations } from "next-intl";
 
-export default function page() {
+export default function Page() {
   // translation
   const t = useTranslations("login");
 

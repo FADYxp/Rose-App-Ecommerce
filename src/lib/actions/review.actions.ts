@@ -18,7 +18,8 @@ export async function submitReviewAction(payload: ReviewPayload) {
   const session = await getServerSession(authOptions);
 
   // Unauthorized
-  const token = (session?.user as any)?.accesstoken;
+  const user = session?.user as { accesstoken?: string } | undefined;
+  const token = user?.accesstoken;
   if (!token) {
     throw new Error("Please logout and login again");
   }

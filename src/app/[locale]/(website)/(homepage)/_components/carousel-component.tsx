@@ -117,7 +117,7 @@ export default function CarouselComponent() {
               onClick={() => router.push("/products")}
               className="w-fit bg-[#FDF0F0] text-rose-900 font-medium px-8 py-6 text-lg rounded-2xl hover:text-white"
             >
-              I'm buying!
+              I&apos;m buying!
             </Button>
           </div>
 

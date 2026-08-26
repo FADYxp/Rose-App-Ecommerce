@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import type { ProductBadgeProps } from "@/lib/types/product";
 import { useTranslations } from "next-intl";
 
 export default function ProductBadge({

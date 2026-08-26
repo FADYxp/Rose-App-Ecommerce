@@ -58,7 +58,7 @@ export default function VerifyOtp() {
   };
 
   // handle verify otp
-  const onSubmit = (data: OtpFormValues) => {
+  const onSubmit = () => {
     verifyOtp();
   };
 
@@ -68,7 +68,11 @@ export default function VerifyOtp() {
     if (!expireAt) return;
 
     const diff = Math.ceil((+expireAt - Date.now()) / 1000);
-    diff > 0 ? setSecondsLeft(diff) : localStorage.removeItem(RESEND_TIMER_KEY);
+    if (diff > 0) {
+      setSecondsLeft(diff);
+    } else {
+      localStorage.removeItem(RESEND_TIMER_KEY);
+    }
   }, []);
 
   // Handle countdown timer

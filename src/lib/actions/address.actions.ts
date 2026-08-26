@@ -16,8 +16,10 @@ async function getAccessToken(): Promise<string> {
   const session = await getServerSession(authOptions);
 
   // check if user is authenticated
-  const token =
-    (session as any)?.user?.accesstoken || (session as any)?.accesstoken;
+  const typedSession = session as
+    | { user?: { accesstoken?: string }; accesstoken?: string }
+    | null;
+  const token = typedSession?.user?.accesstoken || typedSession?.accesstoken;
 
   // unauthorized
   if (!token) {
@@ -86,7 +88,7 @@ export async function getAddressesAction() {
 }
 
 //  Add address
-export async function addAddressAction(data: any) {
+export async function addAddressAction(data: unknown) {
   try {
     await apiRequest("/addresses", {
       method: "PATCH",
@@ -103,7 +105,7 @@ export async function addAddressAction(data: any) {
 }
 
 //  Update address
-export async function updateAddressAction(id: string, data: any) {
+export async function updateAddressAction(id: string, data: unknown) {
   try {
     await apiRequest(`/addresses/${id}`, {
       method: "PATCH",

@@ -4,8 +4,18 @@ import PayMethod from "./pay-method";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { useCheckout } from "@/hooks/use-checkout";
+import { useToast } from "@/hooks/use-toast";
+import { useLocale } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
 type PaymentMethodProps = CheckoutStep & CheckoutPayload;
+type PaymentMethodOption = {
+  image: string;
+  title: string;
+  description: string;
+  method: "cash" | "credit";
+};
+
 export default function PaymentMethod({
   setStep,
   street,
@@ -16,11 +26,15 @@ export default function PaymentMethod({
 }: PaymentMethodProps) {
   // translation
   const t = useTranslations("payment-method");
+  const locale = useLocale();
+  const router = useRouter();
   // state
-  const [selectedMethod, setSelectedMethod] = React.useState<string>("cash");
+  const [selectedMethod, setSelectedMethod] = React.useState<"cash" | "credit">(
+    "credit"
+  );
 
   // for Test
-  const list = [
+  const list: PaymentMethodOption[] = [
     {
       image: "/assets/cash.png",
       title: t("cash"),
@@ -35,16 +49,35 @@ export default function PaymentMethod({
     },
   ];
 
-  const { checkout } = useCheckout();
+  const { checkoutAsync, isPending } = useCheckout();
+  const { toast } = useToast();
 
-  const handleCheckout = () => {
-    checkout({ street, phone, city, lat, long });
-    console.log('s' , selectedMethod)
-    console.log('1- ', street)
-    console.log('1- ', phone)
-    console.log('1- ', lat)
-    console.log('1- ', long)
-    console.log('1- ', city)
+  const handleCheckout = async () => {
+    try {
+      const payload = await checkoutAsync({
+        values: { street, phone, city, lat, long },
+        method: selectedMethod,
+        paymentUrl: `${window.location.origin}/${locale}/orders/myOrders/allOrders`,
+      });
+
+      if (selectedMethod === "credit") {
+        const paymentUrl = payload?.session?.url ?? payload?.url;
+        if (!paymentUrl) throw new Error("Payment URL was not returned");
+        window.location.assign(paymentUrl);
+        return;
+      }
+
+      toast({
+        title: t("success"),
+        variant: "success",
+      });
+      router.push("/orders/myOrders/allOrders");
+    } catch (error) {
+      toast({
+        title: error instanceof Error ? error.message : t("error"),
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -91,8 +124,13 @@ export default function PaymentMethod({
         ))}
       </ul>
       <div className="flex justify-end mt-6">
-        <Button className="w-40 font-semibold" onClick={handleCheckout}>
-          {t("checkout")} <MoveRight size={20} className="rtl:rotate-180" />
+        <Button
+          className="w-40 font-semibold"
+          onClick={handleCheckout}
+          disabled={isPending}
+        >
+          {isPending ? "..." : t("checkout")}{" "}
+          <MoveRight size={20} className="rtl:rotate-180" />
         </Button>
       </div>
     </div>

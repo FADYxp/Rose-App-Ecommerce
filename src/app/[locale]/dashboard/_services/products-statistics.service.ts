@@ -6,7 +6,7 @@ import {
 } from "@/lib/types/dashboard/product";
 
 // fetch statistics
-async function fetchStatistics(): Promise<AllStatisticsResponse | null> {
+export async function getAllStatisticsService(): Promise<AllStatisticsResponse | null> {
   const token = await getMyToken();
   if (!token?.accesstoken) return null;
 
@@ -23,7 +23,7 @@ async function fetchStatistics(): Promise<AllStatisticsResponse | null> {
 
 // get low stock
 export async function getLowStockProducts(): Promise<LowStockProduct[]> {
-  const data = await fetchStatistics();
+  const data = await getAllStatisticsService();
   if (!data) return [];
 
   // get all products
@@ -45,7 +45,7 @@ export async function getLowStockProducts(): Promise<LowStockProduct[]> {
 
 // get top selling
 export async function getTopSellingProducts(): Promise<TopSellingProduct[]> {
-  const data = await fetchStatistics();
+  const data = await getAllStatisticsService();
   if (!data) return [];
 
   // get all products

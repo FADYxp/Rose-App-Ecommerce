@@ -18,9 +18,10 @@ export default function StatusPercentage({
 
   const centerX = typeof cx === "number" ? cx : 0;
   const centerY = typeof cy === "number" ? cy : 0;
+  const angle = typeof midAngle === "number" ? midAngle : 0;
 
-  const x = centerX + radius * Math.cos(-midAngle * RADIAN);
-  const y = centerY + radius * Math.sin(-midAngle * RADIAN);
+  const x = centerX + radius * Math.cos(-angle * RADIAN);
+  const y = centerY + radius * Math.sin(-angle * RADIAN);
 
   const percentageText = `${(percent * 100).toFixed(0)}%`;
 

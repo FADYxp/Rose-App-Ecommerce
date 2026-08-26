@@ -35,8 +35,8 @@ export async function updateCategoryAction(id: string, name: string) {
       message: "Category updated successfully",
       document: data.document || data,
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
-    return { success: false, message: err?.message || "Something went wrong" };
+    return { success: false, message: err instanceof Error ? err.message : "Something went wrong" };
   }
 }

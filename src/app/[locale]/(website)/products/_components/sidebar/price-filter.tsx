@@ -125,4 +125,6 @@ const PriceFilter = forwardRef((_, ref) => {
   );
 });
 
+PriceFilter.displayName = "PriceFilter";
+
 export default PriceFilter;

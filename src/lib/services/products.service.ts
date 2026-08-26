@@ -1,5 +1,10 @@
-"use server"
-export async function getProducts(params: Record<string, any> = {}) {
+"use server";
+
+import type { ProductsResponse } from "@/lib/types/product";
+
+export async function getProducts(
+  params: Record<string, unknown> = {}
+): Promise<ProductsResponse> {
   const query = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {

@@ -39,7 +39,7 @@ const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
           ref={(node) => {
             inputRef.current = node;
             if (typeof ref === "function") ref(node);
-            else if (ref) (ref as any).current = node;
+            else if (ref) ref.current = node;
           }}
           type="file"
           accept={accept}

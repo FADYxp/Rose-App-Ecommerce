@@ -1,16 +1,25 @@
-import { AddCheckoutCash } from "@/lib/actions/checkout.actions";
+import { checkoutAction } from "@/lib/actions/checkout.actions";
 import { useMutation } from "@tanstack/react-query";
 
-export function useCheckout() {
-  const { mutate: checkout, isPending } = useMutation({
-    mutationFn: async (values: CheckoutPayload) => {
-      const payload = await AddCheckoutCash(values);
+type CheckoutMethod = "cash" | "credit";
 
-      console.log("payload" , payload )
-    },
-    onSuccess: () => console.log("Succusssssssssssssssssssssssss"),
-    onError: () => console.log("Errrrrrrrrrrrrror"),
+export function useCheckout() {
+  const mutation = useMutation({
+    mutationFn: ({
+      values,
+      method,
+      paymentUrl,
+    }: {
+      values: CheckoutPayload;
+      method: CheckoutMethod;
+      paymentUrl?: string;
+    }) => checkoutAction(values, { method, paymentUrl }),
   });
 
-  return { checkout, isPending };
+  return {
+    checkout: mutation.mutate,
+    checkoutAsync: mutation.mutateAsync,
+    isPending: mutation.isPending,
+    error: mutation.error,
+  };
 }

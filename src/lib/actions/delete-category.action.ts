@@ -30,8 +30,8 @@ export async function deleteCategoryAction(
     } catch {}
 
     return { success: res.ok, message };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
-    return { success: false, message: err?.message || "Something went wrong" };
+    return { success: false, message: err instanceof Error ? err.message : "Something went wrong" };
   }
 }

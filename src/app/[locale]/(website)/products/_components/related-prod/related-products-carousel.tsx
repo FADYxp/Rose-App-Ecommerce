@@ -16,6 +16,17 @@ type Props = {
   productId: string;
 };
 
+type RelatedProduct = {
+  _id: string;
+  imgCover: string;
+  title: string;
+  price: number;
+  priceAfterDiscount: number;
+  rateAvg: number;
+  quantity: number;
+  sold: number;
+};
+
 // Component
 export async function RelatedProductsCarousel({ productId }: Props) {
   const data = await getRelatedProducts(productId);
@@ -26,7 +37,7 @@ export async function RelatedProductsCarousel({ productId }: Props) {
     <Carousel opts={{ align: "start" }} className="w-full h-full">
       {/* Items */}
       <CarouselContent className="ml-0 h-full flex">
-        {data.similarProducts.map((product: any) => {
+        {data.similarProducts.map((product: RelatedProduct) => {
           // Image
           const imageUrl = `${IMAGE_BASE_URL}/uploads/${product.imgCover}`;
 

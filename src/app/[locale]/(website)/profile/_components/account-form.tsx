@@ -37,7 +37,6 @@ interface AccountFormProps {
 }
 
 export default function AccountForm({
-  extraActions,
   onChangePassword,
 }: AccountFormProps = {}) {
   // Translations

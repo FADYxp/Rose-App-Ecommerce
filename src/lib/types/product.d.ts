@@ -39,9 +39,16 @@ type ProductsParams = {
   limit?: number;
   occasion?: string;
 };
-type ProductsResponse = {
+export type ProductsResponse = {
   products: Product[];
-  total?: number;
+  metadata?: {
+    currentPage: number;
+    totalPages: number;
+    limit: number;
+    totalItems: number;
+    nextPage?: number;
+    prevPage?: number;
+  };
 };
 
 type MostPopularProductsProps = {
@@ -49,12 +56,12 @@ type MostPopularProductsProps = {
   initialOccasion: string;
   occasions: Occasion[];
 };
-type ProductBadgeProps = {
+export type ProductBadgeProps = {
   quantity: number;
   sold?: number;
 };
 
-type ProductRatingProps = {
+export type ProductRatingProps = {
   rate: number;
 };
 

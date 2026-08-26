@@ -24,7 +24,6 @@ interface DeleteAlertProps {
 export function DeleteAlert({
   itemType = "item",
   triggerButton,
-  onConfirm,
   isLoading = false,
 }: DeleteAlertProps) {
   // Trasnlations

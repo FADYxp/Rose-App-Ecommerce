@@ -197,6 +197,7 @@
     "rating": "Rating",
     "ratings": "ratings",
     "currency": "EGP",
+    "checkout": "Checkout",
     "loading": "Loading ..."
   },
   "category-filter": {
@@ -272,7 +273,10 @@
     "cash-description": "You’ll pay in cash when your order is delivered.",
     "card": "Credit Card",
     "card-description": "You’ll be securely redirected to Stripe to complete your payment.",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "processing": "Processing...",
+    "success": "Checkout completed successfully",
+    "error": "Checkout failed"
   },
   "summary": {
     "title": "Summary",
@@ -280,7 +284,8 @@
     "apply": "Apply Coupon",
     "box": "No coupons applied",
     "subtotal": "Subtotal",
-    "total": "Total"
+    "total": "Total",
+    "checkout": "Checkout"
   },
   "error": "error",
   "product.products": "",

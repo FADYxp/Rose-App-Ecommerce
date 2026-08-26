@@ -61,6 +61,7 @@ export default function LoginForm() {
     login(values, {
       onSuccess: () => {
         router.replace("/");
+          router.refresh();
       },
     });
   };

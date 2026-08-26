@@ -1,6 +1,7 @@
 import { withAuth } from "next-auth/middleware";
+import type { NextRequestWithAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import { NextFetchEvent, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import { getToken } from "next-auth/jwt";
 
@@ -29,7 +30,10 @@ const authMiddleware = withAuth(
   }
 );
 
-export default async function middleware(req: NextRequest) {
+export default async function middleware(
+  req: NextRequestWithAuth,
+  event: NextFetchEvent
+) {
   // Variables
   const token = await getToken({ req });
 
@@ -58,7 +62,7 @@ export default async function middleware(req: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    const userRole = (token as any)?.role;
+    const userRole = token.role;
     // Only allow admin users to access dashboard
     if (userRole !== "admin") {
       const localePrefix = routing.locales.find((locale) =>
@@ -92,7 +96,7 @@ export default async function middleware(req: NextRequest) {
     return handleI18nRouting(req);
   }
 
-  return (authMiddleware as any)(req);
+  return authMiddleware(req, event);
 }
 
 export const config = {

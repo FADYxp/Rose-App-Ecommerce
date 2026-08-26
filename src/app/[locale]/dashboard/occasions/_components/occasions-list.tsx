@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useDeleteOccasions } from "../_hooks/use-delete-occasions";
 import { useRouter } from "@/i18n/navigation";
-import PaginationWrapper from "@/components/ui/PaginationWrapper";
+import PaginationWrapper from "@/components/ui/paginationWrapper";
 import { useTranslations } from "next-intl";
 import OccasionsListSkeleton from "./occasions-list-skeleton";
 import { Spinner } from "@/components/ui/spinner";

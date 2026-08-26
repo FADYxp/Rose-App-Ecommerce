@@ -8,6 +8,7 @@ import {
   Map,
   AdvancedMarker,
   Pin,
+  MapMouseEvent,
 } from "@vis.gl/react-google-maps";
 
 // Types
@@ -47,7 +48,7 @@ export function AddressFormStep2({
 
   // Handle map click
   const handleMapClick = useCallback(
-    (e: any) => {
+    (e: MapMouseEvent) => {
       if (!e.detail?.latLng) return;
       onLocationUpdate(e.detail.latLng.lat, e.detail.latLng.lng);
     },
@@ -55,7 +56,7 @@ export function AddressFormStep2({
   );
 
   // Handle marker drag
-  const handleDragEnd = (e: any) => {
+  const handleDragEnd = (e: google.maps.MapMouseEvent) => {
     setIsDragging(false);
     if (!e.latLng) return;
     onLocationUpdate(e.latLng.lat(), e.latLng.lng());
@@ -109,12 +110,10 @@ export function AddressFormStep2({
             gestureHandling="greedy"
             onClick={handleMapClick}
             style={{ width: "100%", height: "100%" }}
-            options={{
-              zoomControl: true,
-              mapTypeControl: false,
-              streetViewControl: false,
-              fullscreenControl: false,
-            }}
+            zoomControl={true}
+            mapTypeControl={false}
+            streetViewControl={false}
+            fullscreenControl={false}
           >
             <AdvancedMarker
               position={center}

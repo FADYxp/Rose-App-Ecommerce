@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils/tailwind-merge";
 import Notifications from "@/components/skeletons/notifications/Notifications";
 import ToggleLanguage from "@/components/features/toggle-language";
 import LoginPopup from "@/components/skeletons/login-popup/login-popup";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useGetCart } from "../../products/[id]/_hooks/use-get-cart";
 import { DeliveryLocationDialog } from "@/app/[locale]/checkout/_components/address-dialog";
@@ -82,8 +82,23 @@ export default function Header() {
     localStorage.setItem("selectedAddress", JSON.stringify(address));
   };
 
-  // state to manage login popup visibility
-  const [isLoginHovered, setIsLoginHovered] = useState(false);
+  // State to keep the login popup open while it is being used.
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const loginPopupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        loginPopupRef.current &&
+        !loginPopupRef.current.contains(event.target as Node)
+      ) {
+        setIsLoginOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
 
   return (
     <>
@@ -121,12 +136,15 @@ export default function Header() {
                 {item.text === "login" && !isLoggedIn ? (
                   <div
                     className="relative"
-                    onMouseEnter={() => setIsLoginHovered(true)}
-                    onMouseLeave={() => setIsLoginHovered(false)}
+                    ref={loginPopupRef}
                   >
                     <Link
                       href={item.link}
                       className="flex items-center gap-1 cursor-pointer"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setIsLoginOpen((isOpen) => !isOpen);
+                      }}
                     >
                       {item.icons?.map((icon, i) => (
                         <span key={i}>{icon}</span>
@@ -134,8 +152,8 @@ export default function Header() {
                       <span>{item.text}</span>
                     </Link>
 
-                    {isLoginHovered && (
-                      <div className="absolute top-full end-0 z-50">
+                    {isLoginOpen && (
+                      <div className="absolute top-full end-0 z-50 pt-2">
                         <LoginPopup />
                       </div>
                     )}

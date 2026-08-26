@@ -24,7 +24,7 @@ export async function getOrders() {
     }
 
     return await response.json();
-  } catch (error) {
+  } catch {
     throw new Error("Failed to fetch orders");
   }
 }

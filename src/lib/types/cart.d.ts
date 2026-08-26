@@ -13,6 +13,8 @@ export type Cart = {
   _id: string;
   appliedCoupons: string[];
   totalPrice: number;
+  discount: number;
+  totalPriceAfterDiscount: number;
   createdAt: string;
   updatedAt: string;
   __v: number;
